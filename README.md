@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+Hello, my name is Vitória Sousa and this application is one of my latest studies, it is a job application software.\
+In this app you can learn with me about StoryBook, UnitTest, Hooks and Components. It's a software that doesn't have an API request, it's just a template.\
+I will do another project just to study API request and best practices.\
+Follow the text below to get started! I hope you like it and can learn from me :D\
+
+# Getting Started with Unique App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
