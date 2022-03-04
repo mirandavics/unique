@@ -36,7 +36,11 @@ export const Index = () => {
         <img src={application} alt="Interview" style={{ width: "365px" }} />
       </Grid>
       <Grid item md={4} xs={12}>
-        <Box margin="auto" width="fit-content">
+        <Box
+          margin="auto"
+          width="fit-content"
+          sx={{ [devices.largeDesktop]: { margin: 0, width: "auto" } }}
+        >
           <Typography variant="h4" fontWeight={700}>
             Job application
           </Typography>

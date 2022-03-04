@@ -8,7 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { Button } from "../../../components/button";
-import { ExperienceDialogProps, ExperienceModel } from "./props";
+import { ExperienceDialogProps } from "./props";
 import { Close } from "@mui/icons-material";
 import { theme } from "../../../assets/theme";
 import { TextField } from "../../../components/textfield";
