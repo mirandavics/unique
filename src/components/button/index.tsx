@@ -14,6 +14,7 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <ButtonStyled
+      data-testid="button"
       color={color || "primary"}
       variant={variant || "contained"}
       label={label}

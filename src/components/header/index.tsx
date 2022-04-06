@@ -11,7 +11,13 @@ export const Header = () => {
       }}
     >
       <Box py={5} textAlign="center">
-        <Typography variant="h4" color="primary.main" mr={1} fontWeight={700}>
+        <Typography
+          data-testid="headerTitle"
+          variant="h4"
+          color="primary.main"
+          mr={1}
+          fontWeight={700}
+        >
           unique
         </Typography>
       </Box>
