@@ -35,27 +35,18 @@ export const ExperienceDialog = ({
     }));
   };
 
-  const changeSnackbar = (
-    open: boolean,
-    message: string,
-    type: "success" | "error"
-  ) => {
-    setSnackbar({
-      open: open,
-      message: message,
-      type: type,
-      onClose: () =>
-        setSnackbar((prevState) => ({ ...prevState, open: false })),
-    });
-  };
-
   const save = () => {
     if (!fields.job || !fields.companyName || !fields.description) {
-      changeSnackbar(true, "Please, complete the fields.", "error");
+      setSnackbar({
+        open: true,
+        message: "Please, complete the fields.",
+        type: "error",
+        onClose: () =>
+          setSnackbar((prevState) => ({ ...prevState, open: false })),
+      });
       return;
     }
 
-    changeSnackbar(true, "Experience saved successfully", "success");
     action(fields);
   };
 
@@ -81,6 +72,7 @@ export const ExperienceDialog = ({
           <Grid item md={12} xs={12}>
             <TextField
               label="Job Title"
+              name="job"
               required
               value={fields.job}
               onChange={(event) => handleChange(event.target.value, "job")}
@@ -91,6 +83,7 @@ export const ExperienceDialog = ({
               label="Company Name"
               required
               value={fields.companyName}
+              name="companyName"
               onChange={(event) =>
                 handleChange(event.target.value, "companyName")
               }
@@ -103,6 +96,7 @@ export const ExperienceDialog = ({
               multiline
               rows={4}
               value={fields.description}
+              name="description"
               onChange={(event) =>
                 handleChange(event.target.value, "description")
               }

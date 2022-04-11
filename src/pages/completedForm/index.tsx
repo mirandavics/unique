@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { devices } from "../../assets/devices";
 import success from "../../assets/images/success.svg";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
+import { FormContext } from "../../context/form";
 
 export const CompletedForm = () => {
+  const formContext = useContext(FormContext);
+  const { form } = formContext;
+  console.log("Form", form);
+
   const navigate = useNavigate();
 
   return (

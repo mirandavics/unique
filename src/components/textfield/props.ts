@@ -13,4 +13,5 @@ export interface TextFieldProps {
   multiline?: boolean;
   rows?: number;
   required?: boolean;
+  name: string;
 }

@@ -1,24 +1,12 @@
-import React, { SetStateAction, useState } from "react";
+import React, { SetStateAction, useContext, useState } from "react";
 import { Box, Card, Grid, Typography } from "@mui/material";
 import { TextField } from "../../components/textfield";
-import { AddressProps, PersonalDataProps, ProfessionalProps } from "./props";
 import NumberFormat from "react-number-format";
+import { FormContext } from "../../context/form";
 
 export const PersonalData = () => {
-  const [personal, setPersonal] = useState({} as PersonalDataProps);
-  const [address, setAddress] = useState({} as AddressProps);
-  const [professional, setProfessional] = useState({} as ProfessionalProps);
-
-  const handleChange = (
-    value: any,
-    name: string,
-    setState: SetStateAction<any>
-  ) => {
-    setState((prevState: any) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const formContext = useContext(FormContext);
+  const { form, handleFormChange } = formContext;
 
   return (
     <Box>
@@ -38,11 +26,10 @@ export const PersonalData = () => {
           <Grid item md={8} xs={12}>
             <TextField
               required
+              name="fullName"
               label="Full Name"
-              value={personal.fullName}
-              onChange={(e) =>
-                handleChange(e.target.value, "fullName", setPersonal)
-              }
+              value={form.personal.fullName}
+              onChange={(e: any) => handleFormChange(e, "personal")}
             />
           </Grid>
 
@@ -50,29 +37,28 @@ export const PersonalData = () => {
             <NumberFormat
               label="Date of birth (YYYY-MM-DD)"
               customInput={TextField}
+              name="birth"
               format="####-##-##"
               mask={["Y", "Y", "Y", "Y", "M", "M", "D", "D"]}
               required
-              value={personal.birth}
-              onChange={(e: any) =>
-                handleChange(e.target.value, "birth", setPersonal)
-              }
+              value={form.personal.birth}
+              onChange={(e: any) => handleFormChange(e, "personal")}
             />
-            {personal.birth !== undefined && isNaN(Date.parse(personal.birth)) && (
-              <Typography variant="body2" color="error.main" mt={0.5}>
-                Invalid Date.
-              </Typography>
-            )}
+            {form.personal.birth !== undefined &&
+              isNaN(Date.parse(form.personal.birth)) && (
+                <Typography variant="body2" color="error.main" mt={0.5}>
+                  Invalid Date.
+                </Typography>
+              )}
           </Grid>
 
           <Grid item md={8} xs={12}>
             <TextField
               required
               label="Email Address"
-              value={personal.email}
-              onChange={(e) =>
-                handleChange(e.target.value, "email", setPersonal)
-              }
+              name="email"
+              value={form.personal.email}
+              onChange={(e: any) => handleFormChange(e, "personal")}
             />
           </Grid>
 
@@ -80,10 +66,9 @@ export const PersonalData = () => {
             <TextField
               required
               label="Mobile number"
-              value={personal.mobileNumber}
-              onChange={(e) =>
-                handleChange(e.target.value, "mobileNumber", setPersonal)
-              }
+              name="mobileNumber"
+              value={form.personal.mobileNumber}
+              onChange={(e: any) => handleFormChange(e, "personal")}
             />
           </Grid>
 
@@ -103,10 +88,9 @@ export const PersonalData = () => {
             <TextField
               required
               label="Street Address"
-              value={address.street}
-              onChange={(e) =>
-                handleChange(e.target.value, "street", setAddress)
-              }
+              name="street"
+              value={form.address.street}
+              onChange={(e: any) => handleFormChange(e, "address")}
             />
           </Grid>
 
@@ -114,10 +98,9 @@ export const PersonalData = () => {
             <TextField
               required
               label="Zipcode"
-              value={address.zipCode}
-              onChange={(e) =>
-                handleChange(e.target.value, "zipCode", setAddress)
-              }
+              name="zipCode"
+              value={form.address.zipCode}
+              onChange={(e: any) => handleFormChange(e, "address")}
             />
           </Grid>
 
@@ -125,8 +108,9 @@ export const PersonalData = () => {
             <TextField
               required
               label="City"
-              value={address.city}
-              onChange={(e) => handleChange(e.target.value, "city", setAddress)}
+              name="city"
+              value={form.address.city}
+              onChange={(e: any) => handleFormChange(e, "address")}
             />
           </Grid>
 
@@ -134,10 +118,9 @@ export const PersonalData = () => {
             <TextField
               required
               label="State"
-              value={address.state}
-              onChange={(e) =>
-                handleChange(e.target.value, "state", setAddress)
-              }
+              name="state"
+              value={form.address.state}
+              onChange={(e: any) => handleFormChange(e, "address")}
             />
           </Grid>
         </Grid>
@@ -159,10 +142,9 @@ export const PersonalData = () => {
             <TextField
               required
               label="Position"
-              value={professional.position}
-              onChange={(e) =>
-                handleChange(e.target.value, "position", setProfessional)
-              }
+              name="position"
+              value={form.professional.position}
+              onChange={(e: any) => handleFormChange(e, "professional")}
             />
           </Grid>
 
@@ -173,10 +155,9 @@ export const PersonalData = () => {
               thousandSeparator={true}
               prefix={"$"}
               required
-              value={professional.desirePay}
-              onChange={(e: any) =>
-                handleChange(e.target.value, "desirePay", setProfessional)
-              }
+              value={form.professional.desirePay}
+              name="desirePay"
+              onChange={(e: any) => handleFormChange(e, "professional")}
             />
           </Grid>
 
@@ -184,12 +165,11 @@ export const PersonalData = () => {
             <TextField
               required
               label="Tell us about yourself"
+              name="description"
               multiline
               rows={4}
-              value={professional.description}
-              onChange={(e) =>
-                handleChange(e.target.value, "description", setProfessional)
-              }
+              value={form.professional.description}
+              onChange={(e: any) => handleFormChange(e, "professional")}
             />
           </Grid>
         </Grid>

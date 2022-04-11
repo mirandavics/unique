@@ -1,3 +1,5 @@
+import { ExperienceModel } from "../experience/dialog/props";
+
 export interface PersonalDataProps {
   fullName: string;
   birth: string;
@@ -16,4 +18,11 @@ export interface ProfessionalProps {
   position: string;
   desirePay: string;
   description: string;
+}
+
+export interface PersonalDataForm {
+  personal: PersonalDataProps;
+  address: AddressProps;
+  professional: ProfessionalProps;
+  experiences: Array<ExperienceModel>;
 }

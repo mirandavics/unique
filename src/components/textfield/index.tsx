@@ -16,10 +16,12 @@ export const TextField = ({
   rows,
   required,
   value,
+  name,
 }: TextFieldProps) => {
   return (
     <>
       <TextFieldStyled
+        name={name}
         data-testid="textfield"
         type={type || "text"}
         defaultValue={defaultValue}
