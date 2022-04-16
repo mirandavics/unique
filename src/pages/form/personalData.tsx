@@ -1,4 +1,4 @@
-import React, { SetStateAction, useContext, useState } from "react";
+import { useContext } from "react";
 import { Box, Card, Grid, Typography } from "@mui/material";
 import { TextField } from "../../components/textfield";
 import NumberFormat from "react-number-format";
@@ -7,6 +7,15 @@ import { FormContext } from "../../context/form";
 export const PersonalData = () => {
   const formContext = useContext(FormContext);
   const { form, handleFormChange } = formContext;
+
+  const isDateValid = () => {
+    const date = form.personal.birth;
+    const dateParse = Date.parse(date);
+    const today = new Date();
+    const todayParse = Date.parse(today.toDateString());
+
+    return !isNaN(dateParse) && todayParse > dateParse;
+  };
 
   return (
     <Box>
@@ -44,12 +53,11 @@ export const PersonalData = () => {
               value={form.personal.birth}
               onChange={(e: any) => handleFormChange(e, "personal")}
             />
-            {form.personal.birth !== undefined &&
-              isNaN(Date.parse(form.personal.birth)) && (
-                <Typography variant="body2" color="error.main" mt={0.5}>
-                  Invalid Date.
-                </Typography>
-              )}
+            {form.personal.birth !== undefined && !isDateValid() && (
+              <Typography variant="body2" color="error.main" mt={0.5}>
+                Invalid Date.
+              </Typography>
+            )}
           </Grid>
 
           <Grid item md={8} xs={12}>
