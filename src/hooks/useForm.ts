@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { ExperienceModel } from "../experience/dialog/props";
+import { ExperienceModel } from "../pages/experience/dialog/props";
 import {
   PersonalDataProps,
   ProfessionalProps,
   AddressProps,
   PersonalDataForm,
-} from "../form/props";
+} from "../pages/form/props";
 
 export function useForm(): [
   form: PersonalDataForm,

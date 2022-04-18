@@ -5,23 +5,45 @@ import { Button } from "../../components/button";
 import { Experience } from "../experience";
 import { CompletedForm } from "../completedForm";
 import { FormContext } from "../../context/form";
-import { useForm } from "../hooks/useForm";
+import { useForm } from "../../hooks/useForm";
+import { StepsEnum } from "../../common/enum/stepsEnum";
+import { isFormValid } from "../../common/validation/formValidation";
+import { Snackbar } from "../../components/snackbar";
+import { SnackbarProps } from "../../components/snackbar/props";
 
 export const Form = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [form, handleFormChange, handleExperiencesChange] = useForm();
+  const [snackbar, setSnackbar] = useState({} as SnackbarProps);
 
   const renderPage = () => {
     switch (step) {
-      case 1:
+      case StepsEnum.FORM:
         return <PersonalData />;
-      case 2:
+      case StepsEnum.EXPERIENCES:
         return <Experience />;
-      case 3:
+      case StepsEnum.SUCCESS:
         /*here you could call a method to send a request for complete the form
          in this cenario the request form was successful*/
         return <CompletedForm />;
     }
+  };
+
+  const handleClick = () => {
+    const [isValid, message] = isFormValid(step, form);
+
+    if (isValid) {
+      setStep(step + 1);
+      return;
+    }
+
+    setSnackbar({
+      open: true,
+      message: message,
+      type: "error",
+      onClose: () =>
+        setSnackbar((prevState) => ({ ...prevState, open: false })),
+    });
   };
 
   return (
@@ -31,9 +53,9 @@ export const Form = () => {
       >
         {renderPage()}
 
-        {step !== 3 && (
+        {step !== StepsEnum.SUCCESS && (
           <Box textAlign="right" mt={2}>
-            {step > 1 && (
+            {step > StepsEnum.FORM && (
               <Button
                 variant="outlined"
                 color="secondary"
@@ -45,16 +67,18 @@ export const Form = () => {
                 Back
               </Button>
             )}
-            <Button
-              label="Next"
-              variant="outlined"
-              onClick={() => setStep(step + 1)}
-            >
+            <Button label="Next" variant="outlined" onClick={handleClick}>
               Continue
             </Button>
           </Box>
         )}
       </FormContext.Provider>
+      <Snackbar
+        open={snackbar.open}
+        type={snackbar.type}
+        onClose={snackbar.onClose}
+        message={snackbar.message}
+      />
     </Box>
   );
 };
