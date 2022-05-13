@@ -1,46 +1,46 @@
-import "@fontsource/montserrat/400.css";
-import "@fontsource/montserrat/600.css";
-import "@fontsource/montserrat/700.css";
-import { createTheme } from "@mui/material";
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/700.css';
+import { createTheme } from '@mui/material';
 
-export const theme = createTheme({
+const theme = createTheme({
   palette: {
     background: {
-      default: "#F8F8F8",
+      default: '#F8F8F8',
     },
     text: {
-      primary: "#555555",
+      primary: '#555555',
     },
     primary: {
-      light: "#8ecdf8",
-      main: "#1d9bf0",
-      dark: "#177cc0",
-      contrastText: "#fff",
+      light: '#8ecdf8',
+      main: '#1d9bf0',
+      dark: '#177cc0',
+      contrastText: '#fff',
     },
     secondary: {
-      light: "#bbbbbb",
-      main: "#a3a3a3",
-      dark: "#9e9e9e",
-      contrastText: "#fff",
+      light: '#bbbbbb',
+      main: '#a3a3a3',
+      dark: '#9e9e9e',
+      contrastText: '#fff',
     },
     light: {
-      light: "#F8F8F8",
-      main: "#bbb9b9",
-      dark: "#888888",
-      contrastText: "#D9D9D9",
+      light: '#F8F8F8',
+      main: '#bbb9b9',
+      dark: '#888888',
+      contrastText: '#D9D9D9',
     },
     error: {
-      main: "#F54748",
-      dark: "#D93F40",
-      contrastText: "#fff",
+      main: '#F54748',
+      dark: '#D93F40',
+      contrastText: '#fff',
     },
     success: {
-      main: "#27997A",
-      contrastText: "#fff",
+      main: '#27997A',
+      contrastText: '#fff',
     },
   },
   typography: {
-    fontFamily: ["Montserrat"].join(","),
+    fontFamily: ['Montserrat'].join(','),
     h4: {
       fontSize: 32,
     },
@@ -70,46 +70,48 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: "0px 2px 5px rgba(136, 136, 136, 0.15);",
-          borderRadius: "16px",
-          padding: "32px",
+          boxShadow: '0px 2px 5px rgba(136, 136, 136, 0.15);',
+          borderRadius: '16px',
+          padding: '32px',
         },
       },
     },
     MuiDialogActions: {
       styleOverrides: {
         root: {
-          padding: "16px 24px",
+          padding: '16px 24px',
         },
       },
     },
     MuiDialogContent: {
       styleOverrides: {
         root: {
-          padding: "8px 24px",
+          padding: '8px 24px',
         },
       },
     },
   },
 });
 
-declare module "@mui/material/styles" {
+export default theme;
+
+declare module '@mui/material/styles' {
   interface Palette {
-    light: Palette["primary"];
+    light: Palette['primary'];
   }
   interface PaletteOptions {
-    light?: PaletteOptions["primary"];
+    light?: PaletteOptions['primary'];
   }
   interface Palette {
-    error: Palette["primary"];
+    error: Palette['primary'];
   }
   interface PaletteOptions {
-    error?: PaletteOptions["primary"];
+    error?: PaletteOptions['primary'];
   }
   interface Palette {
-    success: Palette["primary"];
+    success: Palette['primary'];
   }
   interface PaletteOptions {
-    success?: PaletteOptions["primary"];
+    success?: PaletteOptions['primary'];
   }
 }

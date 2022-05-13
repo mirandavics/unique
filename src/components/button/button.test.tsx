@@ -1,35 +1,36 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { Button } from "./index";
+import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import Button from './index';
 
-describe("Button Component", () => {
-  test("Click", () => {
+describe('Button Component', () => {
+  test('Click', () => {
     const functionButton = jest.fn();
     render(<Button label="Button" onClick={functionButton} />);
 
-    fireEvent.click(screen.getByTestId("button"));
+    fireEvent.click(screen.getByTestId('button'));
 
     expect(functionButton).toHaveBeenCalled();
   });
 
-  test("Color primary by default", () => {
+  test('Color primary by default', () => {
     render(<Button label="Button" />);
 
-    let classes = screen
-      .getByTestId("button")
-      .getAttribute("class")
+    const classes = screen
+      .getByTestId('button')
+      .getAttribute('class')
       ?.toLocaleLowerCase();
 
-    expect(classes?.includes("primary")).toBe(true);
+    expect(classes?.includes('primary')).toBe(true);
   });
 
-  test("Variant contained by default", () => {
+  test('Variant contained by default', () => {
     render(<Button label="Button" />);
 
-    let classes = screen
-      .getByTestId("button")
-      .getAttribute("class")
+    const classes = screen
+      .getByTestId('button')
+      .getAttribute('class')
       ?.toLocaleLowerCase();
 
-    expect(classes?.includes("contained")).toBe(true);
+    expect(classes?.includes('contained')).toBe(true);
   });
 });

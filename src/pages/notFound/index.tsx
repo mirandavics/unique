@@ -1,11 +1,11 @@
-import React from "react";
-import notFoundImage from "../../assets/images/pageNotFound.svg";
-import { Box, Grid, Typography } from "@mui/material";
-import { devices } from "../../assets/devices";
-import { Button } from "../../components/button";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Box, Grid, Typography } from '@mui/material';
+import notFoundImage from '../../assets/images/pageNotFound.svg';
+import { devices } from '../../assets/devices';
+import Button from '../../components/button';
 
-export const NotFound = () => {
+const NotFound = () => {
   const navigate = useNavigate();
 
   return (
@@ -16,8 +16,8 @@ export const NotFound = () => {
       alignItems="center"
       sx={{
         [devices.mobile]: {
-          textAlign: "center",
-          padding: "24px 8px",
+          textAlign: 'center',
+          padding: '24px 8px',
         },
       }}
     >
@@ -29,11 +29,11 @@ export const NotFound = () => {
         paddingTop={0}
         sx={{
           [devices.mobile]: {
-            textAlign: "center",
+            textAlign: 'center',
           },
         }}
       >
-        <img src={notFoundImage} alt="Not Found" style={{ width: "365px" }} />
+        <img src={notFoundImage} alt="Not Found" style={{ width: '365px' }} />
       </Grid>
       <Grid item md={4} xs={12}>
         <Box margin="auto" width="fit-content">
@@ -43,9 +43,11 @@ export const NotFound = () => {
           <Typography variant="body1" mb={2}>
             Click the button bellow to go to the initial page.
           </Typography>
-          <Button label="Click here" onClick={() => navigate("/")} />
+          <Button label="Click here" onClick={() => navigate('/')} />
         </Box>
       </Grid>
     </Grid>
   );
 };
+
+export default NotFound;

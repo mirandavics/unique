@@ -1,8 +1,8 @@
-import React from "react";
-import { ButtonStyled } from "./styles";
-import { ButtonProps } from "./props";
+import React from 'react';
+import ButtonStyled from './styles';
+import { ButtonProps } from './props';
 
-export const Button = ({
+const Button = ({
   color,
   variant,
   disabled,
@@ -11,20 +11,20 @@ export const Button = ({
   children,
   type,
   sx,
-}: ButtonProps) => {
-  return (
-    <ButtonStyled
-      data-testid="button"
-      color={color || "primary"}
-      variant={variant || "contained"}
-      label={label}
-      type={type || "button"}
-      disabled={disabled}
-      onClick={onClick}
-      disableTouchRipple
-      sx={sx}
-    >
-      {children || label}
-    </ButtonStyled>
-  );
-};
+}: ButtonProps) => (
+  <ButtonStyled
+    data-testid="button"
+    color={color || 'primary'}
+    variant={variant || 'contained'}
+    label={label}
+    type={type || 'button'}
+    disabled={disabled}
+    onClick={onClick}
+    disableTouchRipple
+    sx={sx}
+  >
+    {children || label}
+  </ButtonStyled>
+);
+
+export default Button;

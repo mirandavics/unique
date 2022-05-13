@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Box, Card, Grid, Typography } from "@mui/material";
-import { Button } from "../../components/button";
-import { ExperienceDialog } from "./dialog";
-import { ExperienceModel } from "./dialog/props";
-import { devices } from "../../assets/devices";
-import { DeleteForever } from "@mui/icons-material";
-import AddInformation from "../../assets/images/addInformation.svg";
-import { FormContext } from "../../context/form";
-import { SnackbarProps } from "../../components/snackbar/props";
-import { Snackbar } from "../../components/snackbar";
+import React, { useContext, useEffect, useState } from 'react';
+import { Box, Card, Grid, Typography } from '@mui/material';
+import { DeleteForever } from '@mui/icons-material';
+import Button from '../../components/button';
+import ExperienceDialog from './dialog';
+import { ExperienceModel } from './dialog/props';
+import { devices } from '../../assets/devices';
+import AddInformation from '../../assets/images/addInformation.svg';
+import FormContext from '../../context/form';
+import { SnackbarProps } from '../../components/snackbar/props';
+import Snackbar from '../../components/snackbar';
 
-export const Experience = () => {
+const Experience = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [model, setModel] = useState({} as ExperienceModel);
   const [snackbar, setSnackbar] = useState({} as SnackbarProps);
@@ -18,42 +18,45 @@ export const Experience = () => {
   const formContext = useContext(FormContext);
   const { form, handleExperiencesChange } = formContext;
 
-  useEffect(() => {}, [form.experiences]);
+  useEffect(() => {
+    /* update experience */
+  }, [form.experiences]);
 
   const newExperience = () => {
     setModel({
-      job: "",
-      companyName: "",
-      description: "",
+      job: '',
+      companyName: '',
+      description: '',
     } as ExperienceModel);
     setOpenDialog(true);
   };
 
   const deleteExperience = (indexArray: number) => {
-    let experiencesArr = form.experiences.filter(
+    const experiencesArr = form.experiences.filter(
       (item, index) => index !== indexArray
     );
-    handleExperiencesChange(true, undefined, experiencesArr);
-  };
 
-  const saveExperience = (experience: ExperienceModel) => {
-    handleExperiencesChange(false, experience);
-    setOpenDialog(false);
-    changeSnackbar(true, "Experience saved successfully", "success");
+    handleExperiencesChange(experiencesArr);
   };
 
   const changeSnackbar = (
     open: boolean,
     message: string,
-    type: "success" | "error"
+    type: 'success' | 'error'
   ) => {
     setSnackbar({
-      open: open,
-      message: message,
-      type: type,
+      open,
+      message,
+      type,
       onClose: () =>
         setSnackbar((prevState) => ({ ...prevState, open: false })),
     });
+  };
+
+  const saveExperience = (experience: ExperienceModel) => {
+    handleExperiencesChange([experience, ...form.experiences]);
+    setOpenDialog(false);
+    changeSnackbar(true, 'Experience saved successfully', 'success');
   };
 
   return (
@@ -66,7 +69,7 @@ export const Experience = () => {
               justifyContent="space-between"
               sx={{
                 [devices.mobile]: {
-                  flexDirection: "column",
+                  flexDirection: 'column',
                 },
               }}
             >
@@ -90,11 +93,11 @@ export const Experience = () => {
             </Box>
           </Grid>
           {!form.experiences.length && (
-            <Box sx={{ margin: "auto" }}>
+            <Box sx={{ margin: 'auto' }}>
               <img
                 src={AddInformation}
                 alt="No data found"
-                style={{ width: "365px" }}
+                style={{ width: '365px' }}
               />
             </Box>
           )}
@@ -105,7 +108,7 @@ export const Experience = () => {
               xs={12}
               mt={0}
               ml={3}
-              key={index}
+              key={experience.job}
               sx={{
                 [devices.mobile]: {
                   marginLeft: 0,
@@ -119,10 +122,10 @@ export const Experience = () => {
                 <Box onClick={() => deleteExperience(index)}>
                   <DeleteForever
                     sx={{
-                      color: "light.dark",
-                      position: "relative",
-                      top: "3px",
-                      cursor: "pointer",
+                      color: 'light.dark',
+                      position: 'relative',
+                      top: '3px',
+                      cursor: 'pointer',
                     }}
                   />
                 </Box>
@@ -138,7 +141,7 @@ export const Experience = () => {
       <ExperienceDialog
         open={openDialog}
         close={() => setOpenDialog(false)}
-        action={(data) => saveExperience(data)}
+        action={(data: ExperienceModel) => saveExperience(data)}
         model={model}
       />
       <Snackbar
@@ -150,3 +153,5 @@ export const Experience = () => {
     </Box>
   );
 };
+
+export default Experience;

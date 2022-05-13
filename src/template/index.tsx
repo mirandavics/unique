@@ -1,14 +1,14 @@
-import React from "react";
-import { theme } from "../assets/theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { Header } from "../components/header";
+import React from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import theme from '../assets/theme';
+import Header from '../components/header';
 
-export const Template: React.FunctionComponent = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Header />
-      {children}
-    </ThemeProvider>
-  );
-};
+const Template: React.FunctionComponent = ({ children }) => (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Header />
+    {children}
+  </ThemeProvider>
+);
+
+export default Template;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Dialog,
   DialogActions,
@@ -6,16 +6,16 @@ import {
   DialogTitle,
   Grid,
   IconButton,
-} from "@mui/material";
-import { Button } from "../../../components/button";
-import { ExperienceDialogProps } from "./props";
-import { Close } from "@mui/icons-material";
-import { theme } from "../../../assets/theme";
-import { TextField } from "../../../components/textfield";
-import { SnackbarProps } from "../../../components/snackbar/props";
-import { Snackbar } from "../../../components/snackbar";
+} from '@mui/material';
+import { Close } from '@mui/icons-material';
+import Button from '../../../components/button';
+import { ExperienceDialogProps } from './props';
+import theme from '../../../assets/theme';
+import TextField from '../../../components/textfield';
+import { SnackbarProps } from '../../../components/snackbar/props';
+import Snackbar from '../../../components/snackbar';
 
-export const ExperienceDialog = ({
+const ExperienceDialog = ({
   open,
   close,
   action,
@@ -39,8 +39,8 @@ export const ExperienceDialog = ({
     if (!fields.job || !fields.companyName || !fields.description) {
       setSnackbar({
         open: true,
-        message: "Please, complete the fields.",
-        type: "error",
+        message: 'Please, complete the fields.',
+        type: 'error',
         onClose: () =>
           setSnackbar((prevState) => ({ ...prevState, open: false })),
       });
@@ -58,7 +58,7 @@ export const ExperienceDialog = ({
           aria-label="close"
           onClick={close}
           sx={{
-            position: "absolute",
+            position: 'absolute',
             right: 8,
             top: 8,
             color: theme.palette.secondary.main,
@@ -75,7 +75,7 @@ export const ExperienceDialog = ({
               name="job"
               required
               value={fields.job}
-              onChange={(event) => handleChange(event.target.value, "job")}
+              onChange={(event) => handleChange(event.target.value, 'job')}
             />
           </Grid>
           <Grid item md={12} xs={12}>
@@ -85,7 +85,7 @@ export const ExperienceDialog = ({
               value={fields.companyName}
               name="companyName"
               onChange={(event) =>
-                handleChange(event.target.value, "companyName")
+                handleChange(event.target.value, 'companyName')
               }
             />
           </Grid>
@@ -98,7 +98,7 @@ export const ExperienceDialog = ({
               value={fields.description}
               name="description"
               onChange={(event) =>
-                handleChange(event.target.value, "description")
+                handleChange(event.target.value, 'description')
               }
             />
           </Grid>
@@ -126,3 +126,5 @@ export const ExperienceDialog = ({
     </Dialog>
   );
 };
+
+export default ExperienceDialog;

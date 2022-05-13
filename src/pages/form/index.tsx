@@ -1,20 +1,24 @@
-import { useState } from "react";
-import { Box } from "@mui/material";
-import { PersonalData } from "./personalData";
-import { Button } from "../../components/button";
-import { Experience } from "../experience";
-import { CompletedForm } from "../completedForm";
-import { FormContext } from "../../context/form";
-import { useForm } from "../../hooks/useForm";
-import { StepsEnum } from "../../common/enum/stepsEnum";
-import { isFormValid } from "../../common/validation/formValidation";
-import { Snackbar } from "../../components/snackbar";
-import { SnackbarProps } from "../../components/snackbar/props";
+import React, { useState, useMemo } from 'react';
+import { Box } from '@mui/material';
+import PersonalData from './personalData';
+import Button from '../../components/button';
+import Experience from '../experience';
+import CompletedForm from '../completedForm';
+import FormContext from '../../context/form';
+import useForm from '../../hooks/useForm';
+import StepsEnum from '../../common/enum/stepsEnum';
+import isFormValid from '../../common/validation/formValidation';
+import Snackbar from '../../components/snackbar';
+import { SnackbarProps } from '../../components/snackbar/props';
 
-export const Form = () => {
+const Form = () => {
   const [step, setStep] = useState(0);
   const [form, handleFormChange, handleExperiencesChange] = useForm();
   const [snackbar, setSnackbar] = useState({} as SnackbarProps);
+  const providerValues = useMemo(
+    () => ({ form, handleFormChange, handleExperiencesChange }),
+    [form, handleFormChange, handleExperiencesChange]
+  );
 
   const renderPage = () => {
     switch (step) {
@@ -23,9 +27,11 @@ export const Form = () => {
       case StepsEnum.EXPERIENCES:
         return <Experience />;
       case StepsEnum.SUCCESS:
-        /*here you could call a method to send a request for complete the form
-         in this cenario the request form was successful*/
+        /* here you could call a method to send a request for complete the form
+         in this cenario the request form was successful */
         return <CompletedForm />;
+      default:
+        return <PersonalData />;
     }
   };
 
@@ -39,8 +45,8 @@ export const Form = () => {
 
     setSnackbar({
       open: true,
-      message: message,
-      type: "error",
+      message,
+      type: 'error',
       onClose: () =>
         setSnackbar((prevState) => ({ ...prevState, open: false })),
     });
@@ -48,9 +54,7 @@ export const Form = () => {
 
   return (
     <Box sx={{ margin: 4 }}>
-      <FormContext.Provider
-        value={{ form, handleFormChange, handleExperiencesChange }}
-      >
+      <FormContext.Provider value={providerValues}>
         {renderPage()}
 
         {step !== StepsEnum.SUCCESS && (
@@ -82,3 +86,5 @@ export const Form = () => {
     </Box>
   );
 };
+
+export default Form;

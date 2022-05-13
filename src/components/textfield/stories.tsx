@@ -1,28 +1,30 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { TextField } from './index';
-import {Visibility} from "@mui/icons-material";
+import { Visibility } from '@mui/icons-material';
+import TextField from './index';
 
 export default {
-    title: 'Components/TextField',
-    component: TextField,
+  title: 'Components/TextField',
+  component: TextField,
 } as ComponentMeta<typeof TextField>;
 
-const Template: ComponentStory<typeof TextField> = (args) => <TextField {...args} />;
+const Template: ComponentStory<typeof TextField> = (args) => (
+  <TextField {...args} />
+);
 
 export const TextFieldDefault = Template.bind({});
 TextFieldDefault.args = {
-    label: 'Label'
-}
+  label: 'Label',
+};
 
 export const TextFieldWithHelperText = Template.bind({});
 TextFieldWithHelperText.args = {
-    label: 'Label',
-    helperText: 'Helper message'
-}
+  label: 'Label',
+  helperText: 'Helper message',
+};
 
 export const TextFieldWithIcon = Template.bind({});
 TextFieldWithIcon.args = {
-    label: 'Password',
-    icon: <Visibility />
-}
+  label: 'Password',
+  icon: <Visibility />,
+};

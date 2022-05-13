@@ -3,26 +3,8 @@ import {
   PersonalDataForm,
   PersonalDataProps,
   ProfessionalProps,
-} from "../../pages/form/props";
-import { StepsEnum } from "../enum/stepsEnum";
-
-export function isFormValid(
-  step: StepsEnum,
-  form: PersonalDataForm
-): [isValid: boolean, message: string] {
-  if (step === StepsEnum.FORM) {
-    return validateForm(form.personal, form.address, form.professional);
-  } else if (step === StepsEnum.EXPERIENCES) {
-    const hasExperience = Boolean(form.experiences.length);
-    const message = !hasExperience
-      ? "Please, add an experience in the button 'Add experience'."
-      : "";
-
-    return [hasExperience, message];
-  }
-
-  return [false, "Please, fill in the fields."];
-}
+} from '../../pages/form/props';
+import StepsEnum from '../enum/stepsEnum';
 
 function validateForm(
   personal: PersonalDataProps,
@@ -35,11 +17,11 @@ function validateForm(
     !personal.email ||
     !personal.mobileNumber
   ) {
-    return [false, "Please, fill in the personal data fields"];
+    return [false, 'Please, fill in the personal data fields'];
   }
 
   if (!address.city || !address.state || !address.street || !address.zipCode) {
-    return [false, "Please, fill in the address fields"];
+    return [false, 'Please, fill in the address fields'];
   }
 
   if (
@@ -47,8 +29,29 @@ function validateForm(
     !professional.desirePay ||
     !professional.position
   ) {
-    return [false, "Please, fill in the professional fields"];
+    return [false, 'Please, fill in the professional fields'];
   }
 
-  return [true, ""];
+  return [true, ''];
 }
+
+function isFormValid(
+  step: StepsEnum,
+  form: PersonalDataForm
+): [isValid: boolean, message: string] {
+  if (step === StepsEnum.FORM) {
+    return validateForm(form.personal, form.address, form.professional);
+  }
+  if (step === StepsEnum.EXPERIENCES) {
+    const hasExperience = Boolean(form.experiences.length);
+    const message = !hasExperience
+      ? "Please, add an experience in the button 'Add experience'."
+      : '';
+
+    return [hasExperience, message];
+  }
+
+  return [false, 'Please, fill in the fields.'];
+}
+
+export default isFormValid;

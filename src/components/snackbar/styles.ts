@@ -1,23 +1,25 @@
-import { Alert, styled } from "@mui/material";
-import { theme } from "../../assets/theme";
+import { Alert, styled } from '@mui/material';
+import theme from '../../assets/theme';
 
-export const AlertStyled = styled(Alert)({
-  color: "white",
-  ".MuiAlert-icon": {
-    color: "white",
+const AlertStyled = styled(Alert)({
+  color: 'white',
+  '.MuiAlert-icon': {
+    color: 'white',
   },
-  ".MuiAlert-message": {
+  '.MuiAlert-message': {
     padding: 0,
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
   },
-  ".MuiIconButton-root": {
-    padding: "2px 5px",
+  '.MuiIconButton-root': {
+    padding: '2px 5px',
   },
-  "&.MuiAlert-standardError": {
+  '&.MuiAlert-standardError': {
     backgroundColor: theme.palette.error.main,
   },
-  "&.MuiAlert-standardSuccess": {
+  '&.MuiAlert-standardSuccess': {
     backgroundColor: theme.palette.success.main,
   },
 });
+
+export default AlertStyled;

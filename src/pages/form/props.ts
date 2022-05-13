@@ -1,4 +1,4 @@
-import { ExperienceModel } from "../experience/dialog/props";
+import { ExperienceModel } from '../experience/dialog/props';
 
 export interface PersonalDataProps {
   fullName: string;

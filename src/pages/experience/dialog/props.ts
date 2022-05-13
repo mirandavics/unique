@@ -1,14 +1,14 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler } from 'react';
 
 export interface ExperienceModel {
-  job: any;
-  description: any;
-  companyName: any;
+  job: string;
+  description: string;
+  companyName: string;
 }
 
 export interface ExperienceDialogProps {
   open: boolean;
   close: MouseEventHandler<HTMLButtonElement>;
-  action: (model: ExperienceModel | any) => any;
+  action: (model: ExperienceModel | any) => unknown;
   model: ExperienceModel;
 }

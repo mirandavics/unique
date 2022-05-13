@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
-import { Box, Grid, Typography } from "@mui/material";
-import { devices } from "../../assets/devices";
-import success from "../../assets/images/success.svg";
-import { Button } from "../../components/button";
-import { useNavigate } from "react-router-dom";
-import { FormContext } from "../../context/form";
+import React, { useContext } from 'react';
+import { Box, Grid, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { devices } from '../../assets/devices';
+import success from '../../assets/images/success.svg';
+import Button from '../../components/button';
+import FormContext from '../../context/form';
 
-export const CompletedForm = () => {
+const CompletedForm = () => {
   const formContext = useContext(FormContext);
   const { form } = formContext;
-  console.log("Form", form);
+  // eslint-disable-next-line no-console
+  console.log('Form', form);
 
   const navigate = useNavigate();
 
@@ -21,8 +22,8 @@ export const CompletedForm = () => {
       alignItems="center"
       sx={{
         [devices.mobile]: {
-          textAlign: "center",
-          padding: "24px 8px",
+          textAlign: 'center',
+          padding: '24px 8px',
         },
       }}
     >
@@ -34,11 +35,11 @@ export const CompletedForm = () => {
         paddingTop={0}
         sx={{
           [devices.mobile]: {
-            textAlign: "center",
+            textAlign: 'center',
           },
         }}
       >
-        <img src={success} alt="Success" style={{ width: "365px" }} />
+        <img src={success} alt="Success" style={{ width: '365px' }} />
       </Grid>
 
       <Grid item md={4} xs={12}>
@@ -53,9 +54,11 @@ export const CompletedForm = () => {
           <Typography variant="body2" mb={1}>
             Click the button bellow to go to the initial page.
           </Typography>
-          <Button label="Click here" onClick={() => navigate("/")} />
+          <Button label="Click here" onClick={() => navigate('/')} />
         </Box>
       </Grid>
     </Grid>
   );
 };
+
+export default CompletedForm;

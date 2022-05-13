@@ -1,20 +1,16 @@
-import { useState } from "react";
-import { ExperienceModel } from "../pages/experience/dialog/props";
+import { useState } from 'react';
+import { ExperienceModel } from '../pages/experience/dialog/props';
 import {
   PersonalDataProps,
   ProfessionalProps,
   AddressProps,
   PersonalDataForm,
-} from "../pages/form/props";
+} from '../pages/form/props';
 
-export function useForm(): [
+function useForm(): [
   form: PersonalDataForm,
-  handleFormChange: (event: any, nameObject: string) => void,
-  handleExperiencesChange: (
-    remove: boolean,
-    experience?: ExperienceModel,
-    experiencesArr?: Array<ExperienceModel>
-  ) => void
+  handleFormChange: (dataForm: PersonalDataForm) => void,
+  handleExperiencesChange: (experiences: Array<ExperienceModel>) => void
 ] {
   const [form, setForm] = useState({
     personal: {} as PersonalDataProps,
@@ -23,40 +19,20 @@ export function useForm(): [
     experiences: [] as Array<ExperienceModel>,
   } as PersonalDataForm);
 
-  const handleFormChange = (event: any, nameObject: string) => {
-    const { name, value } = event.target;
-
-    setForm((prevState: any) => ({
-      ...prevState,
-      [nameObject]: { ...prevState[nameObject], [name]: value },
-    }));
+  const handleFormChange = (dataForm: PersonalDataForm) => {
+    setForm(dataForm);
   };
 
-  const handleExperiencesChange = (
-    remove: boolean,
-    experience?: ExperienceModel,
-    experiencesArr?: Array<ExperienceModel>
-  ) => {
-    if (!remove) {
-      setForm((prevState: any) => ({
-        ...prevState,
-        experiences: [experience, ...prevState.experiences],
-      }));
-    } else {
-      setForm((prevState: any) => ({
-        ...prevState,
-        experiences: experiencesArr,
-      }));
-    }
+  const handleExperiencesChange = (experiences: Array<ExperienceModel>) => {
+    setForm((prevState) => ({ ...prevState, experiences }));
   };
 
   return [
     form,
-    (event: any, nameObject: string) => handleFormChange(event, nameObject),
-    (
-      remove: boolean,
-      experience?: ExperienceModel,
-      experiencesArr?: Array<ExperienceModel>
-    ) => handleExperiencesChange(remove, experience, experiencesArr),
+    (dataForm: PersonalDataForm) => handleFormChange(dataForm),
+    (experiences: Array<ExperienceModel>) =>
+      handleExperiencesChange(experiences),
   ];
 }
+
+export default useForm;
