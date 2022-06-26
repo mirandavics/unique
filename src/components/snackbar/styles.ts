@@ -1,5 +1,5 @@
 import { Alert, styled } from '@mui/material';
-import theme from '../../assets/theme';
+import { theme } from '../../assets/theme';
 
 const AlertStyled = styled(Alert)({
   color: 'white',

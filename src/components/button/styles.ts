@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import { Button, styled } from '@mui/material';
 import { ButtonProps } from './props';
-import theme from '../../assets/theme';
+import { theme } from '../../assets/theme';
 
 const ButtonStyled = styled(Button)((props: ButtonProps) => ({
   textTransform: 'none',

@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { IconButton, styled, TextField } from '@mui/material';
 import { TextFieldProps } from './props';
-import theme from '../../assets/theme';
+import { theme } from '../../assets/theme';
 
 export const TextFieldStyled = styled(TextField)((props: TextFieldProps) => ({
   width: '100%',

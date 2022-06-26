@@ -1,9 +1,10 @@
+/* eslint-disable import/prefer-default-export */
 import '@fontsource/montserrat/400.css';
 import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/700.css';
 import { createTheme } from '@mui/material';
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     background: {
       default: '#F8F8F8',
@@ -92,8 +93,6 @@ const theme = createTheme({
     },
   },
 });
-
-export default theme;
 
 declare module '@mui/material/styles' {
   interface Palette {

@@ -10,7 +10,7 @@ import {
 import { Close } from '@mui/icons-material';
 import Button from '../../../components/button';
 import { ExperienceDialogProps } from './props';
-import theme from '../../../assets/theme';
+import { theme } from '../../../assets/theme';
 import TextField from '../../../components/textfield';
 import { SnackbarProps } from '../../../components/snackbar/props';
 import Snackbar from '../../../components/snackbar';
